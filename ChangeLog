@@ -1,0 +1,18 @@
+2018-05-16  Eric Herman <eric@freesa.org>
+
+	play with jump hash "A Fast, Minimal Memory, Consistent Hash Algorithm"
+	by John Lamping, Eric Veach of Google described at:
+	https://arxiv.org/pdf/1406.2294v1.pdf
+
+	* src/jumphash.h: prototype
+	* src/jumphash.c: impl
+	* tests/test_jump_hash.c: some basic checks
+	* configure.ac: autotools
+	* Makefile.am: autotools
+	* misc/pre-tidy.patch: for tidy
+	* README: basic usage, credit
+	* COPYING: lgpl-3.0.txt
+	* COPYING.GPL3: gpl-3.0.txt
+	* NEWS: empty
+	* .gitignore: test_jump_hash
+	* ChangeLog: Freshly created ChangeLog.
