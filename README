@@ -10,7 +10,6 @@ as can be found at:
 
 Usage
 -----
-	#include <stdint.h>
 	#include <jumphash.h>
 
 	uint64_t key;
