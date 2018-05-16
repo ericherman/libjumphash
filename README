@@ -1,0 +1,36 @@
+This is essentially a copy-paste of the reference implementation of jump-hash
+as can be found at:
+
+   https://arxiv.org/pdf/1406.2294v1.pdf
+
+   A Fast, Minimal Memory, Consistent Hash Algorithm
+   John Lamping, Eric Veach
+   Google
+
+
+Usage
+-----
+	#include <stdint.h>
+	#include <jumphash.h>
+
+	uint64_t key;
+	int32_t num_buckets;
+	int32_t bucket;
+
+	bucket = jumphash(key, num_buckets);
+
+
+Packaging
+---------
+autoreconf -iv &&
+ ./configure &&
+ make &&
+ make distcheck &&
+ make test &&
+ echo "Success."
+
+
+License
+-------
+GNU Lesser General Public License (LGPL), version 3 or later.
+See COPYING, COPYING.GPL3 for details.
