@@ -19,21 +19,22 @@ Usage
 	bucket = jumphash(key, num_buckets);
 
 
-Packaging
----------
+Building
+--------
 autoreconf -iv &&
  ./configure &&
  make &&
- make distcheck &&
- make test &&
+ make check &&
  echo "Success."
 
 
 Testing
 -------
 make check &&
+ make test &&
  FROM=2 TO=3 VERBOSE=1 &&
- ./test_jumphash_rebucket $FROM $TO $VERBOSE
+ ./test_jumphash_rebucket $FROM $TO $VERBOSE &&
+ echo "Success."
 
 
 License
