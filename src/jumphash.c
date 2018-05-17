@@ -35,7 +35,7 @@ int32_t jumphash(uint64_t key, int32_t num_buckets)
 	while (j < num_buckets) {
 		b = j;
 		key = key * Linear_Congruential_Generator_64 + 1;
-		j = (b + 1) * ((double)(1LL << 31)) / ((double)(key >> 33) + 1);
+		j = (b + 1) * ((double)(1LL << 31) / (double)((key >> 33) + 1));
 	}
 	return b;
 }
