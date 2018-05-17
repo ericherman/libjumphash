@@ -29,6 +29,13 @@ autoreconf -iv &&
  echo "Success."
 
 
+Testing
+-------
+make check &&
+ FROM=2 TO=3 VERBOSE=1 &&
+ ./test_jumphash_rebucket $FROM $TO $VERBOSE
+
+
 License
 -------
 GNU Lesser General Public License (LGPL), version 3 or later.
