@@ -23,7 +23,7 @@ AC_TYPE_INT32_T
 AC_TYPE_UINT64_T
 
 # Checks for library functions.
-AC_CHECK_FUNCS([fabs])
+AC_CHECK_FUNCS([strtoul])
 
 AM_INIT_AUTOMAKE([subdir-objects -Werror -Wall])
 AM_PROG_AR

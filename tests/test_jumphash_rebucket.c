@@ -4,6 +4,8 @@
 
 #define THRESHOLD 0.0001
 
+#define atosize_t(x) ((size_t)strtoul(x, NULL, 10))
+
 int main(int argc, char **argv)
 {
 	size_t from_buckets, to_buckets, stayed, moved;
@@ -12,11 +14,11 @@ int main(int argc, char **argv)
 	int32_t first, next;
 	double ratio, ideal, diff;
 
-	from_buckets = argc > 1 ? (size_t)atoi(argv[1]) : 4;
-	to_buckets = argc > 2 ? (size_t)atoi(argv[2]) : from_buckets + 1;
-	verbose = argc > 3 ? atoi(argv[1]) : 0;
-	num_keys = argc > 4 ? (size_t)atoi(argv[4]) : 10 * 1000 * 1000;
-	first_key = argc > 5 ? (size_t)atoi(argv[5]) : 0;
+	from_buckets = argc > 1 ? atosize_t(argv[1]) : 4;
+	to_buckets = argc > 2 ? atosize_t(argv[2]) : from_buckets + 1;
+	verbose = argc > 3 ? atoi(argv[3]) : 0;
+	num_keys = argc > 4 ? atosize_t(argv[4]) : 10 * 1000 * 1000;
+	first_key = argc > 5 ? atosize_t(argv[5]) : 0;
 
 	if (from_buckets < to_buckets) {
 		ideal = ((double)from_buckets) / ((double)to_buckets);
