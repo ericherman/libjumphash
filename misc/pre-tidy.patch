@@ -1,6 +1,6 @@
 --- orig/src/jumphash.h
 +++ tidy/src/jumphash.h
-@@ -25,16 +25,20 @@
+@@ -24,16 +24,20 @@
  #ifndef JUMP_HASH_H
  #define JUMP_HASH_H
  
