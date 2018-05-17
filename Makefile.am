@@ -20,7 +20,7 @@ ACLOCAL_AMFLAGS=-I m4 --install
 EXTRA_DIST=COPYING.GPL
 
 check_PROGRAMS=\
- test_jumphash
+ test_jumphash_rebucket
 
 tidy:
 	patch -Np1 -i misc/pre-tidy.patch
@@ -38,17 +38,17 @@ spotless:
 	pushd tests && rm -rf `cat ../.gitignore | sed -e 's/#.*//'`; popd
 
 test: $(check_PROGRAMS)
-	./test_jumphash 1 2 1
-	./test_jumphash 2 4 1
-	./test_jumphash 3 7 1
-	./test_jumphash 4 8 1
-	./test_jumphash 5 11 1
-	./test_jumphash 6 12 1
-	./test_jumphash 7 13 1
-	./test_jumphash 8 16 1
+	./test_jumphash_rebucket 1 2 1
+	./test_jumphash_rebucket 2 4 1
+	./test_jumphash_rebucket 3 7 1
+	./test_jumphash_rebucket 4 8 1
+	./test_jumphash_rebucket 5 11 1
+	./test_jumphash_rebucket 6 12 1
+	./test_jumphash_rebucket 7 13 1
+	./test_jumphash_rebucket 8 16 1
 
 valgrind: $(check_PROGRAMS)
-	libtool --mode=execute valgrind -q ./test_jumphash
+	libtool --mode=execute valgrind -q ./test_jumphash_rebucket
 
 
 libjumphash_la_SOURCES=src/jumphash.c
@@ -62,6 +62,6 @@ T_COMMON_SOURCES=\
 
 T_COMMON_LDADD=libjumphash.la
 
-test_jumphash_SOURCES=tests/test_jumphash.c \
+test_jumphash_rebucket_SOURCES=tests/test_jumphash_rebucket.c \
  $(T_COMMON_SOURCES)
-test_jumphash_LDADD=$(T_COMMON_LDADD)
+test_jumphash_rebucket_LDADD=$(T_COMMON_LDADD)

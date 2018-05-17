@@ -1,3 +1,10 @@
+2018-05-17  Eric Herman <eric@freesa.org>
+
+	rename 'test_jumphash' -> 'test_jumphash_rebucket'
+
+	* tests/test_jumphash_rebucket.c: renamed from test_jumphash.c
+	* tests/test_jumphash.c: renamed to test_jumphash_rebucket.c
+
 2018-05-16  Eric Herman <eric@freesa.org>
 
 	play with jump hash "A Fast, Minimal Memory, Consistent Hash Algorithm"
@@ -6,7 +13,7 @@
 
 	* src/jumphash.h: prototype
 	* src/jumphash.c: impl
-	* tests/test_jump_hash.c: some basic checks
+	* tests/test_jumphash.c: some basic checks
 	* configure.ac: autotools
 	* Makefile.am: autotools
 	* misc/pre-tidy.patch: for tidy

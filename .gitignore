@@ -1,7 +1,7 @@
 ################
 # compiled tests
 ################
-test_jumphash
+test_jumphash_rebucket
 
 ###################
 # backup files
