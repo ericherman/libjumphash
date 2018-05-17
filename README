@@ -38,5 +38,5 @@ make check &&
 
 License
 -------
-GNU Lesser General Public License (LGPL), version 3 or later.
-See COPYING, COPYING.GPL3 for details.
+GNU Lesser General Public License (LGPL), version 2.1 or later.
+See COPYING for details.
