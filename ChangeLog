@@ -1,8 +1,9 @@
 2018-05-17  Eric Herman <eric@freesa.org>
 
+	allow test_jumphash_rebucket to test resharding to fewer buckets
 	rename 'test_jumphash' -> 'test_jumphash_rebucket'
 
-	* tests/test_jumphash_rebucket.c: renamed from test_jumphash.c
+	* tests/test_jumphash_rebucket.c: (renamed), allow reshard shrinking
 	* tests/test_jumphash.c: renamed to test_jumphash_rebucket.c
 
 2018-05-16  Eric Herman <eric@freesa.org>

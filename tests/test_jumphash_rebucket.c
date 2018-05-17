@@ -18,7 +18,11 @@ int main(int argc, char **argv)
 	num_keys = argc > 4 ? (size_t)atoi(argv[4]) : 10 * 1000 * 1000;
 	first_key = argc > 5 ? (size_t)atoi(argv[5]) : 0;
 
-	ideal = ((double)from_buckets) / ((double)to_buckets);
+	if (from_buckets < to_buckets) {
+		ideal = ((double)from_buckets) / ((double)to_buckets);
+	} else {
+		ideal = ((double)to_buckets) / ((double)from_buckets);
+	}
 	stayed = 0;
 	moved = 0;
 	for (key = first_key; key < (first_key + num_keys); ++key) {

@@ -46,6 +46,9 @@ test: $(check_PROGRAMS)
 	./test_jumphash_rebucket 6 12 1
 	./test_jumphash_rebucket 7 13 1
 	./test_jumphash_rebucket 8 16 1
+	./test_jumphash_rebucket 16 8 1
+	./test_jumphash_rebucket 5 4 1
+	./test_jumphash_rebucket 3 2 1
 
 valgrind: $(check_PROGRAMS)
 	libtool --mode=execute valgrind -q ./test_jumphash_rebucket
