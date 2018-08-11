@@ -35,7 +35,8 @@ ACLOCAL_AMFLAGS=-I m4 --install
 EXTRA_DIST=misc
 
 check_PROGRAMS=\
- test_jumphash_rebucket
+ test_jumphash_rebucket \
+ test_jumphash_equivalence
 
 tidy:
 	patch -Np1 -i misc/pre-tidy.patch
@@ -53,6 +54,7 @@ spotless:
 	pushd tests && rm -rf `cat ../.gitignore | sed -e 's/#.*//'`; popd
 
 test: $(check_PROGRAMS)
+	./test_jumphash_equivalence
 	./test_jumphash_rebucket 1 2 1
 	./test_jumphash_rebucket 2 4 1
 	./test_jumphash_rebucket 3 7 1
@@ -67,6 +69,7 @@ test: $(check_PROGRAMS)
 
 valgrind: $(check_PROGRAMS)
 	libtool --mode=execute valgrind -q ./test_jumphash_rebucket
+	libtool --mode=execute valgrind -q ./test_jumphash_equivalence
 
 
 libjumphash_la_SOURCES=src/jumphash.c
@@ -83,3 +86,7 @@ T_COMMON_LDADD=libjumphash.la
 test_jumphash_rebucket_SOURCES=tests/test_jumphash_rebucket.c \
  $(T_COMMON_SOURCES)
 test_jumphash_rebucket_LDADD=$(T_COMMON_LDADD)
+
+test_jumphash_equivalence_SOURCES=tests/test_jumphash_equivalence.c \
+ $(T_COMMON_SOURCES)
+test_jumphash_equivalence_LDADD=$(T_COMMON_LDADD)
