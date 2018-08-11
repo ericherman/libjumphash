@@ -24,18 +24,19 @@ License for more details.
 #include <stdio.h>
 #include <jumphash.h>
 
-#define assert_equals(expected, actual) \
-	fl_assert_long_eq(__FILE__, __LINE__, expected, actual)
-
-static int fl_assert_long_eq(const char *file, int line, uint32_t expected,
-			     uint32_t actual)
+static int check_jumphash(int32_t expected, uint64_t key, int32_t num_buckets)
 {
-	if (expected == actual) {
+	int32_t result;
+
+	result = jumphash(key, num_buckets);
+
+	if (expected == result) {
 		return 0;
 	}
 
-	fprintf(stderr, "FAIL: Expected %ld but was %ld [%s:%d]\n",
-		(long)expected, (long)actual, file, line);
+	fprintf(stderr, "FAIL: jumphash(%lu, %ld). Expected %ld but was %ld\n",
+		(unsigned long)key, (long)num_buckets, (long)expected,
+		(long)result);
 
 	return 1;
 }
@@ -52,14 +53,14 @@ int main(void)
 
 	fail = 0;
 	for (i = 0; i < golden100_len; ++i) {
-		fail += assert_equals(golden100[i], jumphash(i, 100));
+		fail += check_jumphash(golden100[i], i, 100);
 	}
-	fail += assert_equals(6, jumphash(10863919174838991L, 11));
-	fail += assert_equals(3, jumphash(2016238256797177309L, 11));
-	fail += assert_equals(5, jumphash(1673758223894951030L, 11));
-	fail += assert_equals(80343, jumphash(2, 100001));
-	fail += assert_equals(22152, jumphash(2201, 100001));
-	fail += assert_equals(15018, jumphash(2202, 100001));
+	fail += check_jumphash(6, 10863919174838991L, 11);
+	fail += check_jumphash(3, 2016238256797177309L, 11);
+	fail += check_jumphash(5, 1673758223894951030L, 11);
+	fail += check_jumphash(80343, 2, 100001);
+	fail += check_jumphash(22152, 2201, 100001);
+	fail += check_jumphash(15018, 2202, 100001);
 
 	return fail ? 1 : 0;
 }
