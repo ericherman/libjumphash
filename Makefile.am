@@ -67,10 +67,6 @@ test: $(check_PROGRAMS)
 	./test_jumphash_rebucket 5 4 1
 	./test_jumphash_rebucket 3 2 1
 
-valgrind: $(check_PROGRAMS)
-	libtool --mode=execute valgrind -q ./test_jumphash_rebucket
-	libtool --mode=execute valgrind -q ./test_jumphash_equivalence
-
 
 libjumphash_la_SOURCES=src/jumphash.c
 
