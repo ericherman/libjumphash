@@ -30,6 +30,7 @@ extern "C" {
 
 #include <stdint.h>
 
+/* returns the bucket number for this key */
 int32_t jumphash(uint64_t key, int32_t num_buckets);
 
 #ifdef __cplusplus

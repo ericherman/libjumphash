@@ -1,6 +1,6 @@
 --- orig/src/jumphash.h
 +++ tidy/src/jumphash.h
-@@ -24,16 +24,20 @@
+@@ -24,17 +24,21 @@
  #ifndef JUMP_HASH_H
  #define JUMP_HASH_H
  
@@ -12,6 +12,7 @@
  
  #include <stdint.h>
  
+ /* returns the bucket number for this key */
  int32_t jumphash(uint64_t key, int32_t num_buckets);
  
 +/*
