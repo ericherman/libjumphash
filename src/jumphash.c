@@ -24,6 +24,7 @@ https://arxiv.org/pdf/1406.2294v1.pdf
 #include <jumphash.h>
 
 /* see also: http://random.mat.sbg.ac.at/results/karl/server/node5.html */
+/* or: https://web.archive.org/web/20181118052646/http://random.mat.sbg.ac.at/results/karl/server/node5.html */
 #define Linear_Congruential_Generator_64 2862933555777941757ULL
 
 /* essentially a copy-paste from  https://arxiv.org/pdf/1406.2294v1.pdf */
