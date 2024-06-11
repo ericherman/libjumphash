@@ -64,11 +64,11 @@ int test_jumphash_rebucket(size_t from_buckets, size_t to_buckets,
 		       (unsigned long long)num_keys,
 		       (unsigned long long)first_key,
 		       (unsigned long long)(first_key + num_keys));
-		printf(" (using LGC multiplier: %llu)\n", (unsigned long long)
-		       jumphash_lcg_multiplier);
 		printf("with %llu buckets and %llu buckets\n",
 		       (unsigned long long)from_buckets,
 		       (unsigned long long)to_buckets);
+		printf(" (using LCG multiplier: %llu)\n",
+		       (unsigned long long)jumphash_lcg_multiplier);
 		printf("%llu stayed in the same bucket, %llu moved buckets\n",
 		       (unsigned long long)stayed, (unsigned long long)moved);
 		printf("for a ratio of %g, ideal would be %g, diff: %g\n",
