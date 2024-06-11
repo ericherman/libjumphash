@@ -23,20 +23,18 @@ https://arxiv.org/pdf/1406.2294v1.pdf
 
 #include <jumphash.h>
 
-/* see also: http://random.mat.sbg.ac.at/results/karl/server/node5.html */
-/* or: https://web.archive.org/web/20181118052646/http://random.mat.sbg.ac.at/results/karl/server/node5.html */
-#define Linear_Congruential_Generator_64 2862933555777941757ULL
+uint64_t jumphash_lcg_multiplier = 2862933555777941757ULL;
 
 /* essentially a copy-paste from  https://arxiv.org/pdf/1406.2294v1.pdf */
-int32_t jumphash(uint64_t key, int32_t num_buckets)
+uint32_t jumphash(uint64_t key, uint32_t num_buckets)
 {
-	int64_t b = -1;
-	int64_t j = 0;
+	uint64_t b = 0;
+	uint64_t j = 0;
 
 	while (j < num_buckets) {
 		b = j;
-		key = key * Linear_Congruential_Generator_64 + 1;
+		key = key * jumphash_lcg_multiplier + 1;
 		j = (b + 1) * ((double)(1LL << 31) / (double)((key >> 33) + 1));
 	}
-	return ((int32_t)b);
+	return ((uint32_t) b);
 }

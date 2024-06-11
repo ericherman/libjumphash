@@ -21,26 +21,29 @@ License for more details.
 #define THRESHOLD 0.0001
 
 #define atosize_t(x) ((size_t)strtoul(x, NULL, 10))
+#define atou64(x) ((uint64_t)strtoull(x, NULL, 10))
 
-int main(int argc, char **argv)
+int test_jumphash_rebucket(size_t from_buckets, size_t to_buckets,
+			   size_t num_keys, size_t first_key, int verbose,
+			   uint64_t lcg_multiplier)
 {
-	size_t from_buckets, to_buckets, stayed, moved;
-	int verbose, fail;
-	size_t key, first_key, num_keys;
-	int32_t first, next;
 	double ratio, ideal, diff;
+	size_t key, stayed, moved;
+	uint32_t first, next;
+	uint64_t orig_lcg_multiplier;
+	int fail;
 
-	from_buckets = argc > 1 ? atosize_t(argv[1]) : 4;
-	to_buckets = argc > 2 ? atosize_t(argv[2]) : from_buckets + 1;
-	verbose = argc > 3 ? atoi(argv[3]) : 0;
-	num_keys = argc > 4 ? atosize_t(argv[4]) : 10 * 1000 * 1000;
-	first_key = argc > 5 ? atosize_t(argv[5]) : 0;
+	if (lcg_multiplier) {
+		orig_lcg_multiplier = jumphash_lcg_multiplier;
+		jumphash_lcg_multiplier = lcg_multiplier;
+	}
 
 	if (from_buckets < to_buckets) {
 		ideal = ((double)from_buckets) / ((double)to_buckets);
 	} else {
 		ideal = ((double)to_buckets) / ((double)from_buckets);
 	}
+	fail = 0;
 	stayed = 0;
 	moved = 0;
 	for (key = first_key; key < (first_key + num_keys); ++key) {
@@ -61,6 +64,8 @@ int main(int argc, char **argv)
 		       (unsigned long long)num_keys,
 		       (unsigned long long)first_key,
 		       (unsigned long long)(first_key + num_keys));
+		printf(" (using LGC multiplier: %llu)\n", (unsigned long long)
+		       jumphash_lcg_multiplier);
 		printf("with %llu buckets and %llu buckets\n",
 		       (unsigned long long)from_buckets,
 		       (unsigned long long)to_buckets);
@@ -73,10 +78,33 @@ int main(int argc, char **argv)
 	if (fail) {
 		fprintf(stderr, "FAIL: diff == %g, expected < %g\n", diff,
 			THRESHOLD);
-		return 1;
 	} else if (verbose) {
 		printf("PASS\n");
 	}
 
-	return 0;
+	if (lcg_multiplier) {
+		jumphash_lcg_multiplier = orig_lcg_multiplier;
+	}
+	return fail;
+}
+
+int main(int argc, char **argv)
+{
+	size_t from_buckets = argc > 1 ? atosize_t(argv[1]) : 0;
+	size_t to_buckets = argc > 2 ? atosize_t(argv[2]) : 0;
+	int verbose = argc > 3 ? atoi(argv[3]) : 0;
+	size_t num_keys = argc > 4 ? atosize_t(argv[4]) : 0;
+	size_t first_key = argc > 5 ? atosize_t(argv[5]) : 0;
+	uint64_t lcg_multiplier = argc > 6 ? atosize_t(argv[6]) : 0;
+	int fails = 0;
+
+	from_buckets = from_buckets ? from_buckets : 4;
+	to_buckets = to_buckets ? to_buckets : from_buckets + 1;
+	num_keys = num_keys ? num_keys : 10 * 1000 * 1000;
+
+	fails +=
+	    test_jumphash_rebucket(from_buckets, to_buckets, num_keys,
+				   first_key, verbose, lcg_multiplier);
+
+	return fails ? 1 : 0;
 }

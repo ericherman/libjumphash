@@ -31,7 +31,26 @@ extern "C" {
 #include <stdint.h>
 
 /* returns the bucket number for this key */
-int32_t jumphash(uint64_t key, int32_t num_buckets);
+uint32_t jumphash(uint64_t key, uint32_t num_buckets);
+
+/*
+The "jumphash" consistent hashing described by Lamping & Veach is a special
+case of a A 64-bit Linear Congruential Generator. An LCG is a type of
+pseudorandom number generator which is extremely simple and consists of a
+seed, a multiplier, and an increment (often 1). With a well chosen value of
+the multiplier, very good randomness is achieved regardless of seed, in spite
+of the simplicity of the formula. See "The Art of Computer Programming,
+Volume 2: Seminumerical Algorithms", by Knuth.
+
+Empirical Testing shows that both the widely recommended value
+6364136223846793005ULL (used in Knuth's MMIX) and the less common value
+2862933555777941757ULL (used in some Java libraries and the jumphash paper)
+generate sequences with long periods and multi-dimensional uniformity.
+See also: https://web.archive.org/web/20181118052646/http://random.mat.sbg.ac.at/results/karl/server/node5.html
+
+The jumphash_lcg_multiplier defaults to 2862933555777941757ULL
+*/
+extern uint64_t jumphash_lcg_multiplier;
 
 #ifdef __cplusplus
 }

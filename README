@@ -13,8 +13,8 @@ Usage
 	#include <jumphash.h>
 
 	uint64_t key;
-	int32_t num_buckets;
-	int32_t bucket;
+	uint32_t num_buckets;
+	uint32_t bucket;
 
 	bucket = jumphash(key, num_buckets);
 

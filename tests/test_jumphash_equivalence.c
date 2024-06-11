@@ -24,9 +24,9 @@ License for more details.
 #include <stdio.h>
 #include <jumphash.h>
 
-static int check_jumphash(int32_t expected, uint64_t key, int32_t num_buckets)
+static int check_jumphash(uint32_t expected, uint64_t key, uint32_t num_buckets)
 {
-	int32_t result;
+	uint32_t result;
 
 	result = jumphash(key, num_buckets);
 
@@ -45,7 +45,7 @@ int main(void)
 {
 	size_t i, fail;
 
-	int golden100[] = {
+	uint32_t golden100[] = {
 		0, 55, 62, 8, 45, 59, 86, 97, 82, 59,
 		73, 37, 17, 56, 86, 21, 90, 37, 38, 83
 	};

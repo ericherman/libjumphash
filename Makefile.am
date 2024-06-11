@@ -66,6 +66,8 @@ test: $(check_PROGRAMS)
 	./test_jumphash_rebucket 16 8 1
 	./test_jumphash_rebucket 5 4 1
 	./test_jumphash_rebucket 3 2 1
+	./test_jumphash_rebucket 1 8 1 10000000 0 0
+	./test_jumphash_rebucket 1 8 1 10000000 0 6364136223846793005ULL
 
 
 libjumphash_la_SOURCES=src/jumphash.c

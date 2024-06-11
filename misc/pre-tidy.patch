@@ -1,6 +1,6 @@
 --- orig/src/jumphash.h
-+++ tidy/src/jumphash.h
-@@ -24,17 +24,21 @@
++++ tigy/src/jumphash.h
+@@ -24,9 +24,11 @@
  #ifndef JUMP_HASH_H
  #define JUMP_HASH_H
  
@@ -12,8 +12,9 @@
  
  #include <stdint.h>
  
- /* returns the bucket number for this key */
- int32_t jumphash(uint64_t key, int32_t num_buckets);
+@@ -52,8 +54,10 @@
+ */
+ extern uint64_t jumphash_lcg_multiplier;
  
 +/*
  #ifdef __cplusplus

@@ -1,3 +1,21 @@
+2024-06-11  Eric Herman <eric@freesa.org>
+
+	API change: int32_t values changed to uint32_t.
+	Allow the LCG multiplier to be set at runtime.
+	It makes little sense to change the multiplier after the first call,
+	thus no effort is made for thread safety.
+	If thread-safety is needed, the caller can create mutex-guards
+	in wrapper functions.
+
+	* src/jumphash.h: int32->uint32; expose extern jumphash_lcg_multiplier
+	* src/jumphash.c: int32->uint32; convert #define to uint64_t variable
+	* tests/test_jumphash_rebucket.c: int32->uint32; setting LCG multiplier
+	* tests/test_jumphash_equivalence.c: int32->uint32
+	* Makefile.am: add test for alternative LCG multiplier
+	* README: int32->uint32
+	* configure.ac: bump version from 1.0.0-dev to 2.0.0-dev
+	* misc/pre-tidy.patch: update
+
 2018-08-11  Eric Herman <eric@freesa.org>
 
 	add equivalence test to compare with "gold standard" from Guava
