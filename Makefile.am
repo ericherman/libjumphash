@@ -19,7 +19,7 @@ CSTD_CFLAGS=-std=c89
 # DEBUG_CFLAGS=-ggdb -O0 -DDEBUG \
 #  -fsanitize=address,leak,undefined
 DEBUG_CFLAGS=-ggdb -O3 -DNDEBUG -Wno-unused-parameter -fomit-frame-pointer
-NOISY_CFLAGS=-Wall -Wextra -Werror
+NOISY_CFLAGS=-Wall -Wextra -Wpedantic -Wcast-qual -Wc++-compat
 AM_CFLAGS=\
  -I./src \
  $(CSTD_CFLAGS) \
