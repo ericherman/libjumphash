@@ -20,11 +20,13 @@ CSTD_CFLAGS=-std=c89
 #  -fsanitize=address,leak,undefined
 DEBUG_CFLAGS=-ggdb -O3 -DNDEBUG -Wno-unused-parameter -fomit-frame-pointer
 NOISY_CFLAGS=-Wall -Wextra -Wpedantic -Wcast-qual -Wc++-compat
+LESS_PEDANTIC_CFLAGS=-Wno-format -Wno-long-long
 AM_CFLAGS=\
  -I./src \
  $(CSTD_CFLAGS) \
  $(DEBUG_CFLAGS) \
  $(NOISY_CFLAGS) \
+ $(LESS_PEDANTIC_CFLAGS) \
  -pipe
 
 # extracted from https://github.com/torvalds/linux/blob/master/scripts/Lindent

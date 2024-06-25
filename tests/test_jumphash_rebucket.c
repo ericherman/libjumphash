@@ -14,6 +14,7 @@ License for more details.
 
 	https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
 */
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <jumphash.h>
@@ -60,17 +61,14 @@ int test_jumphash_rebucket(size_t from_buckets, size_t to_buckets,
 	fail = !(diff < THRESHOLD);
 
 	if (verbose || fail) {
-		printf("tested %llu keys (%llu <= %llu)\n",
-		       (unsigned long long)num_keys,
-		       (unsigned long long)first_key,
-		       (unsigned long long)(first_key + num_keys));
-		printf("with %llu buckets and %llu buckets\n",
-		       (unsigned long long)from_buckets,
-		       (unsigned long long)to_buckets);
-		printf(" (using LCG multiplier: %llu)\n",
-		       (unsigned long long)jumphash_lcg_multiplier);
-		printf("%llu stayed in the same bucket, %llu moved buckets\n",
-		       (unsigned long long)stayed, (unsigned long long)moved);
+		printf("tested %zu keys (%zu <= %zu)\n",
+		       num_keys, first_key, (first_key + num_keys));
+		printf("with %zu buckets and %zu buckets\n",
+		       from_buckets, to_buckets);
+		printf(" (using LCG multiplier: %" PRIu64 ")\n",
+		       jumphash_lcg_multiplier);
+		printf("%zu stayed in the same bucket, %zu moved buckets\n",
+		       stayed, moved);
 		printf("for a ratio of %g, ideal would be %g, diff: %g\n",
 		       ratio, ideal, diff);
 	}
