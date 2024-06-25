@@ -70,6 +70,7 @@ test: $(check_PROGRAMS)
 	./test_jumphash_rebucket 3 2 1
 	./test_jumphash_rebucket 1 8 1 10000000 0 0
 	./test_jumphash_rebucket 1 8 1 10000000 0 6364136223846793005ULL
+	./test_jumphash_rebucket 3 7 1 100000 0 6364136223846793005ULL 0.0000001
 
 
 libjumphash_la_SOURCES=src/jumphash.c

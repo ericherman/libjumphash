@@ -19,14 +19,12 @@ License for more details.
 #include <stdlib.h>
 #include <jumphash.h>
 
-#define THRESHOLD 0.0001
-
 #define atosize_t(x) ((size_t)strtoul(x, NULL, 10))
 #define atou64(x) ((uint64_t)strtoull(x, NULL, 10))
 
 int test_jumphash_rebucket(size_t from_buckets, size_t to_buckets,
 			   size_t num_keys, size_t first_key, int verbose,
-			   uint64_t lcg_multiplier)
+			   uint64_t lcg_multiplier, double threshold)
 {
 	double ratio, ideal, diff;
 	size_t key, stayed, moved;
@@ -58,7 +56,7 @@ int test_jumphash_rebucket(size_t from_buckets, size_t to_buckets,
 	}
 	ratio = ((double)stayed) / ((double)(moved + stayed));
 	diff = ratio >= ideal ? ratio - ideal : ideal - ratio;
-	fail = !(diff < THRESHOLD);
+	fail = !(diff < threshold);
 
 	if (verbose || fail) {
 		printf("tested %zu keys (%zu <= %zu)\n",
@@ -75,7 +73,7 @@ int test_jumphash_rebucket(size_t from_buckets, size_t to_buckets,
 
 	if (fail) {
 		fprintf(stderr, "FAIL: diff == %g, expected < %g\n", diff,
-			THRESHOLD);
+			threshold);
 	} else if (verbose) {
 		printf("PASS\n");
 	}
@@ -94,15 +92,18 @@ int main(int argc, char **argv)
 	size_t num_keys = argc > 4 ? atosize_t(argv[4]) : 0;
 	size_t first_key = argc > 5 ? atosize_t(argv[5]) : 0;
 	uint64_t lcg_multiplier = argc > 6 ? atosize_t(argv[6]) : 0;
+	double threshold = argc > 7 ? atof(argv[7]) : 0.0;
 	int fails = 0;
 
 	from_buckets = from_buckets ? from_buckets : 4;
 	to_buckets = to_buckets ? to_buckets : from_buckets + 1;
 	num_keys = num_keys ? num_keys : 10 * 1000 * 1000;
+	threshold = threshold > 0.0 ? threshold : 0.0001;
 
 	fails +=
 	    test_jumphash_rebucket(from_buckets, to_buckets, num_keys,
-				   first_key, verbose, lcg_multiplier);
+				   first_key, verbose, lcg_multiplier,
+				   threshold);
 
 	return fails ? 1 : 0;
 }
