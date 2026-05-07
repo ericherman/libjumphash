@@ -1,6 +1,6 @@
 /*
 test_jumphash_equivalence: shows that jumphash is same as others
-Copyright (C) 2018 Eric Herman <eric@freesa.org>
+Copyright (C) 2018-2026 Eric Herman <eric@freesa.org>
 
 This work is free software: you can redistribute it and/or modify it
 under the terms of the GNU Lesser General Public License as published by
