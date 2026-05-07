@@ -22,7 +22,7 @@ DEBUG_CFLAGS=-ggdb -O3 -DNDEBUG -Wno-unused-parameter -fomit-frame-pointer
 NOISY_CFLAGS=-Wall -Wextra -Wpedantic -Wcast-qual -Wc++-compat
 LESS_PEDANTIC_CFLAGS=-Wno-format -Wno-long-long
 AM_CFLAGS=\
- -I./src \
+ -I$(top_srcdir)/src \
  $(CSTD_CFLAGS) \
  $(DEBUG_CFLAGS) \
  $(NOISY_CFLAGS) \
