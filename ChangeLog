@@ -1,3 +1,20 @@
+2026-06-10  Eric Herman <eric@freesa.org>
+
+	Add new function to allow passing a custom multiplier:
+		jumphash_m(key, buckets, multiplier)
+
+	Change: extern uint64_t jumphash_lcg_multiplier
+	    to: extern const uint64_t jumphash_default_lcg_multiplier
+
+	Adjust test to use new function, now that it exists and the global
+	variable is gone.
+
+	* src/jumphash.h: add jumphash_m(), rename default multiplier
+	* src/jumphash.c: jumphash() now calls jumphash_m() with default
+	* tests/test_jumphash_rebucket.c: replace global with stack var,
+		improve atou64 macro robustness (maybe no strtoull)
+	* configure.ac: check for strtoull
+
 2026-05-07  Eric Herman <eric@freesa.org>
 
 	Fix "make distcheck", Update copyright to 2026

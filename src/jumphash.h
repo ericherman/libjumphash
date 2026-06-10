@@ -50,7 +50,9 @@ See also: https://web.archive.org/web/20181118052646/http://random.mat.sbg.ac.at
 
 The jumphash_lcg_multiplier defaults to 2862933555777941757ULL
 */
-extern uint64_t jumphash_lcg_multiplier;
+extern const uint64_t jumphash_default_lcg_multiplier;
+
+uint32_t jumphash_m(uint64_t key, uint32_t num_buckets, uint64_t multiplier);
 
 #ifdef __cplusplus
 }

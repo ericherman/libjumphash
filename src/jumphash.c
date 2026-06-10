@@ -23,18 +23,22 @@ https://arxiv.org/pdf/1406.2294v1.pdf
 
 #include <jumphash.h>
 
-uint64_t jumphash_lcg_multiplier = 2862933555777941757ULL;
-
 /* essentially a copy-paste from  https://arxiv.org/pdf/1406.2294v1.pdf */
-uint32_t jumphash(uint64_t key, uint32_t num_buckets)
+uint32_t jumphash_m(uint64_t key, uint32_t num_buckets, uint64_t lcg_multiplier)
 {
 	uint64_t b = 0;
 	uint64_t j = 0;
 
 	while (j < num_buckets) {
 		b = j;
-		key = key * jumphash_lcg_multiplier + 1;
+		key = key * lcg_multiplier + 1;
 		j = (b + 1) * ((double)(1LL << 31) / (double)((key >> 33) + 1));
 	}
 	return ((uint32_t) b);
+}
+
+const uint64_t jumphash_default_lcg_multiplier = 2862933555777941757ULL;
+uint32_t jumphash(uint64_t key, uint32_t num_buckets)
+{
+	return jumphash_m(key, num_buckets, jumphash_default_lcg_multiplier);
 }
