@@ -13,6 +13,9 @@
 #
 #        https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
 
+# ABI verison 2
+AM_LDFLAGS = -version-info 2:0:0
+
 lib_LTLIBRARIES=libjumphash.la
 
 CSTD_CFLAGS=-std=c89
