@@ -37,8 +37,8 @@ ACLOCAL_AMFLAGS=-I m4 --install
 EXTRA_DIST=misc
 
 check_PROGRAMS=\
- test_jumphash_rebucket \
- test_jumphash_equivalence
+ test-jumphash-rebucket \
+ test-jumphash-equivalence
 
 tidy:
 	patch -Np1 -i misc/pre-tidy.patch
@@ -56,21 +56,21 @@ spotless:
 	pushd tests && rm -rf `cat ../.gitignore | sed -e 's/#.*//'`; popd
 
 test: $(check_PROGRAMS)
-	./test_jumphash_equivalence
-	./test_jumphash_rebucket 1 2 1
-	./test_jumphash_rebucket 2 4 1
-	./test_jumphash_rebucket 3 7 1
-	./test_jumphash_rebucket 4 8 1
-	./test_jumphash_rebucket 5 11 1
-	./test_jumphash_rebucket 6 12 1
-	./test_jumphash_rebucket 7 13 1
-	./test_jumphash_rebucket 8 16 1
-	./test_jumphash_rebucket 16 8 1
-	./test_jumphash_rebucket 5 4 1
-	./test_jumphash_rebucket 3 2 1
-	./test_jumphash_rebucket 1 8 1 10000000 0 0
-	./test_jumphash_rebucket 1 8 1 10000000 0 6364136223846793005ULL
-	./test_jumphash_rebucket 3 7 1 100000 0 6364136223846793005ULL 0.0000001
+	./test-jumphash-equivalence
+	./test-jumphash-rebucket 1 2 1
+	./test-jumphash-rebucket 2 4 1
+	./test-jumphash-rebucket 3 7 1
+	./test-jumphash-rebucket 4 8 1
+	./test-jumphash-rebucket 5 11 1
+	./test-jumphash-rebucket 6 12 1
+	./test-jumphash-rebucket 7 13 1
+	./test-jumphash-rebucket 8 16 1
+	./test-jumphash-rebucket 16 8 1
+	./test-jumphash-rebucket 5 4 1
+	./test-jumphash-rebucket 3 2 1
+	./test-jumphash-rebucket 1 8 1 10000000 0 0
+	./test-jumphash-rebucket 1 8 1 10000000 0 6364136223846793005ULL
+	./test-jumphash-rebucket 3 7 1 100000 0 6364136223846793005ULL 0.0000001
 
 
 libjumphash_la_SOURCES=src/jumphash.c
@@ -84,10 +84,10 @@ T_COMMON_SOURCES=\
 
 T_COMMON_LDADD=libjumphash.la
 
-test_jumphash_rebucket_SOURCES=tests/test_jumphash_rebucket.c \
+test_jumphash_rebucket_SOURCES=tests/test-jumphash-rebucket.c \
  $(T_COMMON_SOURCES)
 test_jumphash_rebucket_LDADD=$(T_COMMON_LDADD)
 
-test_jumphash_equivalence_SOURCES=tests/test_jumphash_equivalence.c \
+test_jumphash_equivalence_SOURCES=tests/test-jumphash-equivalence.c \
  $(T_COMMON_SOURCES)
 test_jumphash_equivalence_LDADD=$(T_COMMON_LDADD)

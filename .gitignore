@@ -1,7 +1,9 @@
 ################
 # compiled tests
 ################
+test-jumphash-rebucket
 test_jumphash_rebucket
+test-jumphash-equivalence
 test_jumphash_equivalence
 
 ###################

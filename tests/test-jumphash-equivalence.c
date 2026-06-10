@@ -1,5 +1,5 @@
 /*
-test_jumphash_equivalence: shows that jumphash is same as others
+test-jumphash-equivalence: shows that jumphash is same as others
 Copyright (C) 2018-2026 Eric Herman <eric@freesa.org>
 
 This work is free software: you can redistribute it and/or modify it

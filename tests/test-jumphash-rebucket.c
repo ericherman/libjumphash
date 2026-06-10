@@ -1,5 +1,5 @@
 /*
-test_jumphash_rebucket: shows that jumphash is consistent
+test-jumphash-rebucket: shows that jumphash is consistent
 Copyright (C) 2018-2026 Eric Herman <eric@freesa.org>
 
 This work is free software: you can redistribute it and/or modify it
