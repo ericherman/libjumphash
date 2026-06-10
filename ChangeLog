@@ -21,6 +21,7 @@
 	* tests/test_jumphash_equivalence.c: tests/test-jumphash-equivalence.c
 	* tests/test_jumphash_rebucket.c: tests/test-jumphash-rebucket.c
 	* .gitignore: reflect test rename
+	* NEWS: start to add content in prep for 2.0 release
 
 2026-05-07  Eric Herman <eric@freesa.org>
 

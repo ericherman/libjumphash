@@ -1,0 +1,48 @@
+Release notes for libjumphash version 2.0
+
+* BREAKING Changes from 1.0:
+
+	* API Change: "buckets" changed type from int32_t to uint32_t
+
+	Buckets could never be a negative number, this change makes that clear.
+
+	2.0 now:
+	uint32_t jumphash(uint64_t key, uint32_t num_buckets)
+
+	1.0 was:
+	int32_t jumphash(uint64_t key, int32_t num_buckets)
+
+
+	* License Change
+
+	2.0 now: LGPL-2.1 (or any later version)
+	1.0 was: LGPL-3.0 (or any later version)
+
+	LGPL-2.1 respects user freedom, and combines with more licenses.
+
+* New in 2.0:
+
+	* new function:
+
+	uint32_t jumphash(uint64_t key,
+			  uint32_t num_buckets,
+			  uint64_t lcg_multiplier)
+
+	* default lcg_multiplier now exposed:
+
+	extern const uint64_t jumphash_default_lcg_multiplier;
+
+Release notes for libjumphash version 1.0:
+
+* libjumphash was not officially tagged for version 1.0
+
+	commit 3cb0eb3d76c0cf26c7bf5e2e63262c55fafedf23 was de facto 1.0
+
+* Introduced in 1.0:
+
+	int32_t jumphash(uint64_t key, int32_t num_buckets);
+
+	based upon: A Fast, Minimal Memory, Consistent Hash Algorithm
+		John Lamping, Eric Veach
+		Google
+		https://arxiv.org/pdf/1406.2294v1.pdf
