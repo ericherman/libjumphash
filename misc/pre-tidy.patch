@@ -1,6 +1,9 @@
+see: bug #65165: extern "C" mishandled in header files
+https://savannah.gnu.org/bugs/?65165
+
 --- orig/src/jumphash.h
-+++ tigy/src/jumphash.h
-@@ -24,9 +24,11 @@
++++ tidy/src/jumphash.h
+@@ -24,9 +24,11 @@ License for more details.
  #ifndef JUMP_HASH_H
  #define JUMP_HASH_H
  
@@ -12,9 +15,9 @@
  
  #include <stdint.h>
  
-@@ -52,8 +54,10 @@
- */
- extern uint64_t jumphash_lcg_multiplier;
+@@ -54,8 +56,10 @@ extern const uint64_t jumphash_default_lcg_multiplier;
+ 
+ uint32_t jumphash_m(uint64_t key, uint32_t num_buckets, uint64_t multiplier);
  
 +/*
  #ifdef __cplusplus
