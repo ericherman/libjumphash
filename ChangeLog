@@ -1,3 +1,22 @@
+2026-05-07  Eric Herman <eric@freesa.org>
+
+	Fix "make distcheck", Update copyright to 2026
+
+	* Makefile.am: fix distcheck, copyright
+	* src/jumphash.c: copyright
+	* src/jumphash.h: copyright
+	* tests/test_jumphash_equivalence.c: copyright
+	* tests/test_jumphash_rebucket.c: copyright
+
+2024-06-25  Eric Herman <eric@freesa.org>
+
+	Make the test_jumphash_rebucket threshold configurable.
+	Add test with threshold of 0.0000001.
+	More build-time warnings.
+
+	* Makefile.am: add test; remove -Werror, add -Wpedantic, -Wc++-compat
+	* test_jumphash_rebucket: threshold no longer hard-coded (was: 0.0001)
+
 2024-06-11  Eric Herman <eric@freesa.org>
 
 	API change: int32_t values changed to uint32_t.
